@@ -17,7 +17,7 @@ module.exports = app => {
 
     app.post('/products',(req,res) =>{
 
-        const{nombre,precio,catalogo,stock} = req.body;
+        const{descripcion,precio,stock} = req.body;
         connection.query('INSERT INTO ARTICULOS SET?',{
             descripcion:descripcion,
             precio:precio,
