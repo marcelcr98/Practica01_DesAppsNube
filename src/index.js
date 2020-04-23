@@ -1,8 +1,8 @@
 const app = require ('./config/server');
-require('./app/routes/login.js')(app);
+require('./app/routes/articulos.js')(app);
 
 //Server
 
-app.listen(app.post('port'), () =>{
-    console.log('OK',app.post('port'));
+app.listen(app.get('port'), () =>{
+    console.log('OK',app.get('port'));
 });
