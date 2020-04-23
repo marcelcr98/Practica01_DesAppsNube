@@ -8,39 +8,55 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css"
         integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <title>Inventario</title>
+    <style>div.div3 {
+            height: 425px;
+            overflow: hidden;
+            position: right;
+        }</style>
 </head>
 
 <body>
 
-    <nav class="navbar navbar-dark bg-blue">
-        <a href="" class="navbar-brand mx-auto">Articulos</a>
+    <nav class="navbar navbar-dark bg-primary">
+        <a href="" class="navbar-brand mx-auto"><h2>Inventario</h2></a>
     </nav>
+
+    <br>
 
     <div class="container">
 
-        
-            <div class="col-md-6 mt-4  card">
-                    <form action="/products" method="post">
-                        <h4 class="card-title">Agregar Articulo</h4>
-                        <div class="form-group">
-                            <input type="text" name="descripcion" class="form-control" placeholder="descripcion"> 
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="precio" class="form-control" placeholder="precio"> 
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="stock" class="form-control" placeholder="stock"> 
-                        </div>
-                        <div class="form-group">
-                            <input type="submit"  class=" btn btn-success"> 
-                        </div>
-                    </form>
-        
-            </div>
+
+                    <div class="row">
+                            <div class="col-md-6 ">
+                                    <form action="/products" method="post">
+                                        <h4 class="card-title">Nuevo Articulo</h4>
+                                        <div class="form-group">
+                                            <input type="text" name="descripcion" class="form-control" placeholder="descripcion"> 
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="precio" class="form-control" placeholder="precio"> 
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="stock" class="form-control" placeholder="stock"> 
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="submit"  class=" btn btn-success"> 
+                                        </div>
+                                    </form>
+                            </div>
+                            <div class="col-md-6">
+                                    <img src="https://userscontent2.emaze.com/images/731a55c1-9574-46e8-944e-f880bdbf4542/dc74b051dae64cedf4ad676cbfb7f850.png" width="300" height="300">
+                            </div>
+                          </div>
+
+
+           
 
             
+
         <div class="row">
-            <div class="col-md-6 mt-4 text center">
+            <div class="col-md-13 mt-4 text center">
+                    <h4 class="card-title">Listado de articulos</h4>
                 <table class="table table-stripped">
                     <tr>
                         <th>ID ARTICULO</th>
@@ -65,6 +81,12 @@
             </table>
         </div>
 
+
+
+
+
+
+        
      </div>
     </div>
 
