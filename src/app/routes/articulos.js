@@ -9,13 +9,13 @@ module.exports = app => {
 
             console.log(result);
 
-            res.render('products',{
-                products: result
+            res.render('articulos',{
+                articulos: result
             });
         });
     });
 
-    app.post('/products',(req,res) =>{
+    app.post('/articulos',(req,res) =>{
 
         const{descripcion,precio,stock} = req.body;
         connection.query('INSERT INTO ARTICULOS SET?',{
