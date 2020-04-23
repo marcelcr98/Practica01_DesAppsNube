@@ -1,55 +1,26 @@
-var mysql = require('mysql');
-var express = require('express');
-var session = require('express-session');
-var bodyParser = require('body-parser');
-var path = require('path');
+const dbConnection = require('../../config/dbConnection');
+module.exports = app => {
 
-var connection = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : '',
-	database : 'nodelogin'
-});
+    const connection = dbConnection();
 
-var app = express();
-app.use(session({
-	secret: 'secret',
-	resave: true,
-	saveUninitialized: true
-}));
-app.use(bodyParser.urlencoded({extended : true}));
-app.use(bodyParser.json());
+    app.post('/auth', (req, res) =>{
+        var username = req.body.username;
+        var password = req.body.password;
+        if (username && password) {
+            connection.query('SELECT * FROM cuentas WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
+                if (res.length > 0) {
+                    req.session.loggedin = true;
+                    req.session.username = username;
+                    res.redirect('/routes/articulos');
+                } else {
+                    res.send('Incorrect Username and/or Password!');
+                }			
+                res.end();
+            });
+        } else {
+            res.send('Please enter Username and Password!');
+            res.end();
+        }
+    });
 
-app.get('/', function(request, response) {
-	response.sendFile(path.join(__dirname + '/views/login.ejs'));
-});
-
-app.post('/auth', function(request, response) {
-	var username = request.body.username;
-	var password = request.body.password;
-	if (username && password) {
-		connection.query('SELECT * FROM cuentas WHERE username = ? AND password = ?', [username, password], function(error, results, fields) {
-			if (results.length > 0) {
-				request.session.loggedin = true;
-				request.session.username = username;
-				response.redirect('/routes/articulos');
-			} else {
-				response.send('Incorrect Username and/or Password!');
-			}			
-			response.end();
-		});
-	} else {
-		response.send('Please enter Username and Password!');
-		response.end();
-	}
-});
-
-app.get('/routes/articulos', function(request, response) {
-	if (request.session.loggedin) {
-		response.send('Welcome back, ' + request.session.username + '!');
-	} else {
-		response.send('Please login to view this page!');
-	}
-	response.end();
-});
-
+}
