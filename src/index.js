@@ -1,5 +1,5 @@
 const app = require ('./config/server');
-require('./app/routes/articulos.js')(app);
+require('./app/routes/login.js')(app);
 
 //Server
 
