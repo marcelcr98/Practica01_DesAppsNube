@@ -5,7 +5,7 @@ module.exports = app => {
 
     app.get('/', (req, res) => {
 
-        connection.query('SELECT  * FROM PRODUCTOS', (err, result) =>{
+        connection.query('SELECT  * FROM ARTICULOS', (err, result) =>{
 
             console.log(result);
 
@@ -18,10 +18,9 @@ module.exports = app => {
     app.post('/products',(req,res) =>{
 
         const{nombre,precio,catalogo,stock} = req.body;
-        connection.query('INSERT INTO PRODUCTOS SET?',{
-            nombre:nombre,
+        connection.query('INSERT INTO ARTICULOS SET?',{
+            descripcion:descripcion,
             precio:precio,
-            idcat: catalogo,
             stock, stock
 
         }, (err, result) =>{
