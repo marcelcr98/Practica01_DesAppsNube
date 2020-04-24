@@ -35,7 +35,7 @@ module.exports = app => {
     });
 
     app.delete('/delete/:id', (req, res) => {
-        connection.query('DELETE FROM articulos WHERE id = ?',  (err, result) =>{
+        connection.query('DELETE FROM articulos WHERE id = ?', [req.id], (err, result) =>{
         if (!err)
         res.send('Learner Record deleted successfully.');
         else
