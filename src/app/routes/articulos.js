@@ -33,4 +33,13 @@ module.exports = app => {
 
         res.rendirect('/actualizar');
     });
+
+    app.delete('/learners/:id', (req, res) => {
+        connection.query('DELETE FROM articulos WHERE id = ?',  (err, result) =>{
+        if (!err)
+        res.send('Learner Record deleted successfully.');
+        else
+        console.log(err);
+        })
+        });
 }
