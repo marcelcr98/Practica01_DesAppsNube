@@ -3,17 +3,14 @@ module.exports = app => {
 
     const connection = dbConnection();
 
-    app.get('/', (req, res) => {
-
-        connection.query('SELECT  * FROM ARTICULOS', (err, result) =>{
-
-            console.log(result);
-
-            res.render('articulos',{
-                articulos: result
-            });
-        });
-    });
+    app.get('/' , (req, res) => {
+        mysqlConnection.query('SELECT * FROM articulos', (err, rows, fields) => {
+        if (!err)
+        res.send(rows);
+        else
+        console.log(err);
+        })
+        } );
 
     app.post('/articulos',(req,res) =>{
 
@@ -34,12 +31,13 @@ module.exports = app => {
         res.rendirect('/actualizar');
     });
 
-    app.delete('/delete/:id', (req, res) => {
-        connection.query('DELETE FROM articulos WHERE id = ?', [req.id], (err, result) =>{
-        if (!err)
-        res.send('Learner Record deleted successfully.');
-        else
-        console.log(err);
-        })
-        });
+//Router to DELETE a learner's detail
+app.delete('/delete/:id', (req, res) => {
+    mysqlConnection.query('DELETE FROM articulos WHERE id = ?', [req.params.id], (err, rows, fields) => {
+    if (!err)
+    res.send('Learner Record deleted successfully.');
+    else
+    console.log(err);
+    })
+    });
 }
